@@ -6,5 +6,9 @@
   <h1>
     Message: {{ curMessage }}
   </h1>
+  <button mat-button (click)="getNumber()">Get number</button>
+  <mat-form-field>
+    <input matInput role="submit" type="text" [(ngModel)]="message" />
+  </mat-form-field>
+  <button mat-button (click)="updateMessage(message)">Update message</button>
 </div>
-

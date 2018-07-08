@@ -12,15 +12,15 @@ export class HubService {
 
   constructor() {
     this.hub = new HubConnectionBuilder()
-      .withUrl('http://localhost:5000/chat')
+      .withUrl('http://localhost:5000/hub')
       .build();
 
     this.hub
       .start()
-      .then(() => console.log('Connection started!'))
-      .catch(err => console.log('Error while establishing connection :('));
+      .then(() => console.log('On the hub, I am'))
+      .catch(err => console.log('An error while establishing connection, there was :('));
 
-    this.hub.on('sendToAll', (receivedMessage: string) => {
+    this.hub.on('receiveMessage', (receivedMessage: string) => {
       this.message$.next(receivedMessage);
     });
 
@@ -31,7 +31,15 @@ export class HubService {
 
   public sendMessage(message: string): void {
     this.hub
-      .invoke('sendToAll', message)
+      .invoke('SendMessage', message)
       .catch(err => console.error(err));
+  }
+
+  public getNumbers(): void {
+    this.hub.invoke('GetNumbers');
+  }
+
+  public getNumber(): void {
+    this.hub.invoke('GetNumber');
   }
 }
