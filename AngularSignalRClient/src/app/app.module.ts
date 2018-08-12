@@ -13,6 +13,8 @@ import { environment } from '../environments/environment';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/Input';
 import { MatCardModule } from '@angular/material/card';
+import { MessageActions } from './state/actions/message-actions';
+import { StateModule } from './state/state/state.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatCardModule,
     FormsModule,
+    StateModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
